@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta content="text/html;charset=utf-8" http-equiv="Content-Type">
+    <title>Make three circles and a rectangle</title>
+    <script src="http://d3js.org/d3.v3.min.js" charset="utf-8"></script>
+</head>
+
+<body>
+    <script>
+    var dataset = [10, 20, 30];
+    var colorScale = d3.scale.category20();
+    var svg = d3.select("body").append("svg")
+        .attr("width", 600)
+        .attr("height", 600);
+
+    svg.selectAll("circle")
+        .data(dataset)
+        .enter().append("circle")
+        .attr("cx", function(d, i) {
+            return (i + 1) * 100;
+        })
+        .attr("cy", function(d, i) {
+            return (i + 1) * 100;
+        })
+        .attr("r", 10)
+        .style("fill", function(d, i) {
+            return colorScale(i + 1);
+        })
+
+    svg.selectAll("rect")
+        .data([40])
+        .enter().append("rect")
+        .attr("x", 150)
+        .attr("y", 100)
+        .attr("width", 20)
+        .attr("height", 30);
+    </script>
+
+</body>
+
+</html>
